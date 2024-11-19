@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock styles %}
+
+{% block content %}
+<div class="container">
+  <h2>Login</h2>
+  <form method="POST" action="{{ url_for('login') }}">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit" class="btn login-btn">Login</button>
+  </form>
+  <div class="registration-links">
+    <a href='/customer_register' class="btn create-account-btn">Create Account</a>
+    <a href='/professional_register' class="btn register-professional-btn">Register as Professional</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/professional_dashboard.css') }}">
+<style></style>
+{% endblock styles %}
+
+{% block content %}
+<div class="navbar">
+    <span class="welcome">Welcome {{ professional.username }}!</span>
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a>Search</a>
+        <a href="#summary">Summary</a>
+        <a href="{{ url_for('login') }}" class="logout-button">Logout</a>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Your Service Requests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Service ID</th>
+                <th>Customer ID</th>
+                <th>Date of Request</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in all_requests %}
+            <tr>
+                <td>{{ request.id }}</td>
+                <td>{{ request.service_id }}</td>
+                <td>{{ request.customer_id }}</td>
+                <td>{{ request.date_of_request.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ request.status }}</td>
+                <td>
+                    {% if request.status == 'assigned' %}
+                    <form action="{{ url_for('accept_service_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn">Accept</button>
+                    </form>
+                    <form action="{{ url_for('reject_service_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn">Reject</button>
+                    </form>
+                    {% elif request.status == 'accepted' %}
+                    <form action="{{ url_for('complete_service_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn">Complete</button>
+                    </form>
+                    {% elif request.status == 'completed' %}
+                    <form action="{{ url_for('close_service_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="action-btn">Close</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

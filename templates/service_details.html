@@ -1,0 +1,26 @@
+<!-- templates/service_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/service_details.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>{{ service.name }}</h2>
+        <p><strong>Price:</strong> ${{ service.price }}</p>
+        <p><strong>Time Required:</strong> {{ service.time_required }} minutes</p>
+        <p><strong>Description:</strong> {{ service.description }}</p>
+        <a href="{{ url_for('service_request', customer_id=customer.id) }}">Request this Service</a>
+    </div>
+</body>
+</html>

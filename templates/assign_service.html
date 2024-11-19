@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block styles %}
+<style>
+    :root {
+        --primary-color: #3498db; /* Blue for primary actions */
+        --secondary-color: #2ecc71; /* Green for success */
+        --background-color: #f4f6f9;
+        --text-color: #2c3e50;
+        --card-background: #ffffff;
+        --input-border: #e0e6ed;
+        --button-shadow: rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+        background-color: var(--background-color);
+        font-family: Arial, sans-serif;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+    }
+
+    .section {
+        background-color: var(--card-background);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 2rem auto;
+        text-align: center;
+    }
+
+    h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--text-color);
+        text-align: left;
+    }
+
+    select, input[type="text"], input[type="hidden"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid var(--input-border);
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        background-color: var(--card-background);
+        color: var(--text-color);
+    }
+
+    select:focus, input[type="text"]:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+    }
+
+    button.action-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 100%;
+    }
+
+    button.action-btn:hover {
+        background-color: #2980b9;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        button.action-btn {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+{% endblock styles %}
+{% block content %}
+    <div class="section">
+        <h2>Assign Service Request</h2>
+        <p>Assign a professional to the service request for {{ service_request.service.name }}.</p>
+        <form method="POST" action="{{ url_for('assign_service_request', request_id=service_request.id) }}">
+            <input type="hidden" name="request_id" value="{{ service_request.id }}">
+            <input type="hidden" name="service_id" value="{{ service_request.service_id }}">
+            
+            <label for="professional_id">Assign to Professional:</label>
+            <select name="professional_id" required>
+                <option value="">Select a professional</option>
+                {% for professional in professionals %}
+                    <option value="{{ professional.id }}">{{ professional.username }}</option>
+                {% endfor %}
+            </select>
+            
+            <button class="action-btn assign-btn">Assign to Professional</button>
+        </form>
+    </div>
+{% endblock %}

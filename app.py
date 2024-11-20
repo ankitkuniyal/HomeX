@@ -227,24 +227,46 @@ def assign_service_request(request_id):
 
     professionals = ServiceProfessional.query.filter_by(servicetype=service_request.service.name).all()
     
-    return render_template('assign_service.html', service_request=service_request, professionals=professionals)
+    return render_template('assign_service.html',service_request=service_request,professionals=professionals)
 @app.route('/new_service', methods=['GET'])
 def new_service():
     """Render the new service form."""
     return render_template ('new_service.html')
 @app.route('/service_request/accept/<int:request_id>', methods=['POST'])
 def accept_service_request(request_id):
-    service_request = ServiceRequest.query.get_or_404(request_id)
-    service_request.status = "accepted"
+    requests = ServiceRequest.query.get_or_404(request_id)
+    requests.status = "accepted"
+    
+    # Create a new ServiceHistory entry
+    history_entry = ServiceHistory(
+        customer_id=requests.customer_id,
+        service_id=requests.service_id,
+        professional_id=requests.professional_id,
+        status="accepted",
+        date_of_service=datetime.utcnow()
+    )
+    db.session.add(history_entry)
     db.session.commit()
+    
     flash('Service request accepted successfully!', 'success')
-    return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
+    return redirect(url_for('professional_dashboard', professional_id=requests.professional_id))
 
 @app.route('/service_request/reject/<int:request_id>', methods=['POST'])
 def reject_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
     service_request.status = "rejected"
+    
+    # Create a new ServiceHistory entry
+    history_entry = ServiceHistory(
+        customer_id=service_request.customer_id,
+        service_id=service_request.service_id,
+        professional_id=service_request.professional_id,
+        status="rejected",
+        date_of_service=datetime.utcnow()
+    )
+    db.session.add(history_entry)
     db.session.commit()
+    
     flash('Service request rejected successfully!', 'danger')
     return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
 
@@ -252,7 +274,18 @@ def reject_service_request(request_id):
 def complete_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
     service_request.status = "completed"
+    
+    # Create a new ServiceHistory entry
+    history_entry = ServiceHistory(
+        customer_id=service_request.customer_id,
+        service_id=service_request.service_id,
+        professional_id=service_request.professional_id,
+        status="completed",
+        date_of_service=datetime.utcnow()
+    )
+    db.session.add(history_entry)
     db.session.commit()
+    
     flash('Service request marked as completed!', 'success')
     return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
 
@@ -260,10 +293,20 @@ def complete_service_request(request_id):
 def close_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
     service_request.status = "closed"
+    
+    # Create a new ServiceHistory entry
+    history_entry = ServiceHistory(
+        customer_id=service_request.customer_id,
+        service_id=service_request.service_id,
+        professional_id=service_request.professional_id,
+        status="closed",
+        date_of_service=datetime.utcnow()
+    )
+    db.session.add(history_entry)
     db.session.commit()
+    
     flash('Service request has been closed!', 'success')
     return redirect(url_for('admin_dashboard'))
-
 @app.route('/admin')
 def admin_dashboard():
     services = Service.query.all()
@@ -286,7 +329,14 @@ def customer_dashboard(customer_id):
     requests = ServiceRequest.query.filter_by(customer_id=customer_id).all()
     history = ServiceHistory.query.filter_by(customer_id=customer_id).all()  # Fetch service history
 
-    return render_template('customer_dashboard.html', customer=customer, services=services, requests=requests, history=history)
+    # Fetch professionals for each history record
+    professionals = {}
+    for record in history:
+        if record.professional_id:
+            professional = ServiceProfessional.query.get(record.professional_id)
+            if professional:
+                professionals[record.professional_id] = professional
+    return render_template('customer_dashboard.html', customer=customer, services=services, requests=requests, history=history, professionals=professionals)
 
 @app.route('/professional_dashboard/<int:professional_id>')
 def professional_dashboard(professional_id):

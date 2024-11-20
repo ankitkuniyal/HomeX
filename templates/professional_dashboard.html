@@ -9,7 +9,7 @@
 <div class="navbar">
     <span class="welcome">Welcome {{ professional.username }}!</span>
     <div class="nav-links">
-        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{url_for('professional_dashboard', professional_id=professional.id)}}">Home</a>
         <a>Search</a>
         <a href="#summary">Summary</a>
         <a href="{{ url_for('login') }}" class="logout-button">Logout</a>

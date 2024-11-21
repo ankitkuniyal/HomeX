@@ -1,137 +1,141 @@
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --background-color: #f4f6f9;
-    --text-color: #2c3e50;
-    --input-background: #ffffff;
-    --input-border: #e0e6ed;
-    --hover-shadow: rgba(0, 0, 0, 0.1);
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f4f6f9;
+  --text-color: #2c3e50;
+  --input-background: #ffffff;
+  --input-border: #e0e6ed;
+  --hover-shadow: rgba(0, 0, 0, 0.1);
 }
 
 body {
-    background-color: var(--background-color);
-    font-family: Arial, sans-serif;
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 1.2rem;
-    font-weight: 600;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .section {
-    background-color: var(--input-background);
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  background-color: var(--input-background);
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .section:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
 }
 
 h2 {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    font-weight: bold;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-input, textarea {
-    background-color: var(--input-background);
-    border: 1px solid var(--input-border);
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+input,
+textarea {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-input:focus, textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+input:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
 }
 
 textarea {
-    resize: none;
-    height: 100px;
+  resize: none;
+  height: 100px;
 }
 
 button.create-service-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    transition: all 0.3s ease;
-    text-align: center;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
 button.create-service-btn:hover {
-    background-color: #2980b9;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-    transform: translateY(-2px);
+  background-color: #2980b9;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  transform: translateY(-2px);
 }
 button.back-btn {
-    background-color: #e74c3c; /* Red color */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    transition: all 0.3s ease;
-    text-align: center;
+  background-color: #e74c3c; /* Red color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
 button.back-btn:hover {
-    background-color: #c0392b; /* Darker red on hover */
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-    transform: translateY(-2px);
+  background-color: #c0392b; /* Darker red on hover */
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+  transform: translateY(-2px);
 }
 
 @media screen and (max-width: 768px) {
-    .section {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
+  .section {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
 
-    h2 {
-        font-size: 1.5rem;
-    }
+  h2 {
+    font-size: 1.5rem;
+  }
 
-    input, textarea, button.create-service-btn {
-        font-size: 0.9rem;
-    }
+  input,
+  textarea,
+  button.create-service-btn {
+    font-size: 0.9rem;
+  }
 }

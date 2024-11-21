@@ -1,26 +1,35 @@
 <!-- templates/profile.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/profile.css') }}"
+    />
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}">Dashboard</a></li>
-        </ul>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li>
+          <a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}"
+            >Dashboard</a
+          >
+        </li>
+      </ul>
     </nav>
 
     <div class="content">
-        <h2>Your Profile</h2>
-        <p><strong>Name:</strong> {{ customer.name }}</p>
-        <p><strong>Email:</strong> {{ customer.email }}</p>
-        <p><strong>Address:</strong> {{ customer.address }}</p>
-        <a href="{{ url_for('edit_profile', customer_id=customer.id) }}">Edit Profile</a>
+      <h2>Your Profile</h2>
+      <p><strong>Name:</strong> {{ customer.name }}</p>
+      <p><strong>Email:</strong> {{ customer.email }}</p>
+      <p><strong>Address:</strong> {{ customer.address }}</p>
+      <a href="{{ url_for('edit_profile', customer_id=customer.id) }}"
+        >Edit Profile</a
+      >
     </div>
-</body>
+  </body>
 </html>

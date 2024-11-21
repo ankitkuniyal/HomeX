@@ -1,113 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confirm Database Deletion</title>
     <style>
-        :root {
-            --primary-color: #e74c3c; /* Red for critical actions */
-            --secondary-color: #3498db; /* Blue for secondary actions */
-            --background-color: #f7f9fc;
-            --text-color: #2c3e50;
-            --button-shadow: rgba(0, 0, 0, 0.2);
-            --card-background: #ffffff;
-        }
+      :root {
+        --primary-color: #e74c3c; /* Red for critical actions */
+        --secondary-color: #3498db; /* Blue for secondary actions */
+        --background-color: #f7f9fc;
+        --text-color: #2c3e50;
+        --button-shadow: rgba(0, 0, 0, 0.2);
+        --card-background: #ffffff;
+      }
 
-        body {
-            background-color: var(--background-color);
-            font-family: Arial, sans-serif;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        background-color: var(--background-color);
+        font-family: Arial, sans-serif;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-        .container {
-            background-color: var(--card-background);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-        }
+      .container {
+        background-color: var(--card-background);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+      }
 
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
+      h1 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+      }
 
-        p {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
+      p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
 
+      .button-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .confirm-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+      }
+
+      .confirm-btn:hover {
+        background-color: #c0392b;
+        box-shadow: 0 5px 15px var(--button-shadow);
+        transform: translateY(-2px);
+      }
+
+      .cancel-btn {
+        background-color: var(--secondary-color);
+        color: white;
+        text-decoration: none;
+      }
+
+      .cancel-btn:hover {
+        background-color: #2980b9;
+        box-shadow: 0 5px 15px var(--button-shadow);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 600px) {
         .button-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 1rem;
+          flex-direction: column;
+          gap: 1rem;
         }
-
-        .btn {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .confirm-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-        }
-
-        .confirm-btn:hover {
-            background-color: #c0392b;
-            box-shadow: 0 5px 15px var(--button-shadow);
-            transform: translateY(-2px);
-        }
-
-        .cancel-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            text-decoration: none;
-        }
-
-        .cancel-btn:hover {
-            background-color: #2980b9;
-            box-shadow: 0 5px 15px var(--button-shadow);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 600px) {
-            .button-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Confirm Database Deletion</h1>
-        <p>Are you sure you want to delete the entire database? This action cannot be undone and all data will be lost.</p>
-        <div class="button-container">
-            <form method="POST" action="{{ url_for('delete_database') }}">
-                <button type="submit" class="btn confirm-btn">Yes, Delete Database</button>
-            </form>
-            <a href="{{ url_for('admin_dashboard') }}" class="btn cancel-btn">Cancel</a>
-        </div>
+      <h1>Confirm Database Deletion</h1>
+      <p>
+        Are you sure you want to delete the entire database? This action cannot
+        be undone and all data will be lost.
+      </p>
+      <div class="button-container">
+        <form method="POST" action="{{ url_for('delete_database') }}">
+          <button type="submit" class="btn confirm-btn">
+            Yes, Delete Database
+          </button>
+        </form>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn cancel-btn"
+          >Cancel</a
+        >
+      </div>
     </div>
-</body>
+  </body>
 </html>

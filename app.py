@@ -130,6 +130,7 @@ def customer_register():
 
 @app.route('/professional_register', methods=['GET', 'POST'])
 def professional_register():
+    services = Service.query.all()  # Fetch all available services
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
@@ -137,7 +138,7 @@ def professional_register():
         servicetype = request.form['role']
         desc = request.form['desc']
 
-        if not username or not email or not password or not servicetype or not desc:
+        if not username or not email or not password or not servicetype :
             flash('All fields are required!', 'danger')
             return redirect(url_for('professional_register'))
 
@@ -146,6 +147,10 @@ def professional_register():
             flash('Email already exists! Please use a different email.', 'danger')
             return redirect(url_for('professional_register'))
 
+        # If "Other" is selected, use the description as the service type
+        if servicetype == "Other":
+            servicetype = desc  # Use the description field as the service type
+
         new_professional = ServiceProfessional(username=username, email=email, password=password, servicetype=servicetype, desc=desc, status='pending')
 
         db.session.add(new_professional)
@@ -153,7 +158,7 @@ def professional_register():
         flash('Professional registered successfully! Awaiting admin approval.', 'success')
         return redirect(url_for('home'))
 
-    return render_template('professional_register.html')
+    return render_template('professional_register.html', services=services)
 
 @app.route('/service/create', methods=['POST'])
 def create_service():
@@ -413,4 +418,4 @@ def delete_service(service_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # This will create the new ServiceHistory table as well
-    app.run(debug=True)
+    app.run(debug=True,port=8000)

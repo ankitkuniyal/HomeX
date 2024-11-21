@@ -1,111 +1,118 @@
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --background-color: #f4f6f9;
-    --text-color: #2c3e50;
-    --input-background: #ffffff;
-    --input-border: #e0e6ed;
-    --hover-shadow: rgba(0, 0, 0, 0.1);
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f4f6f9;
+  --text-color: #2c3e50;
+  --input-background: #ffffff;
+  --input-border: #e0e6ed;
+  --hover-shadow: rgba(0, 0, 0, 0.1);
 }
 
 body {
-    background-color: var(--background-color);
-    font-family: Arial, sans-serif;
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
-    background-color: var(--input-background);
-    max-width: 600px;
-    width: 90%;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: var(--input-background);
+  max-width: 600px;
+  width: 90%;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    font-weight: bold;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-input, select, textarea {
-    background-color: var(--input-background);
-    border: 1px solid var(--input-border);
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+input,
+select,
+textarea {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-input:focus, select:focus, textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 button.btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    transition: all 0.3s ease;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
 }
 
 button.btn:hover {
-    background-color: #2980b9;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-    transform: translateY(-2px);
+  background-color: #2980b9;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  transform: translateY(-2px);
 }
 
 button.back-btn {
-    background-color: #e74c3c;
-    margin-top: 0.5rem;
+  background-color: #e74c3c;
+  margin-top: 0.5rem;
 }
 
 button.back-btn:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }
 
 @media screen and (max-width: 768px) {
-    .container {
-        padding: 1.5rem;
-    }
+  .container {
+    padding: 1.5rem;
+  }
 
-    input, select, textarea, button.btn {
-        font-size: 0.9rem;
-    }
+  input,
+  select,
+  textarea,
+  button.btn {
+    font-size: 0.9rem;
+  }
 
-    h2 {
-        font-size: 1.5rem;
-    }
+  h2 {
+    font-size: 1.5rem;
+  }
 }

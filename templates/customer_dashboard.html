@@ -10,8 +10,6 @@
     <a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}"
       >Home</a
     >
-    <a href="/search">Search</a>
-    <a href="/summary">Summary</a>
     <a href="{{ url_for('home') }} " class="logout-button">Logout</a>
   </div>
 </div>
@@ -52,27 +50,28 @@
       </tr>
     </thead>
     <tbody>
-        {% for record in history %}
-        <tr>
-            <td>{{ record.id }}</td>
-            <td>{{ record.service.name }}</td>
-            <td>
-                {% if record.professional_id %}
-                    {% set professional = professionals.get(record.professional_id) %}
-                    {{ professional.username if professional else 'N/A' }} <!-- Changed from name to username -->
-                {% else %}
-                    N/A
-                {% endif %}
-            </td> <!-- Display Professional Username -->
-            <td>{{ record.date_of_service.strftime('%Y-%m-%d') }}</td>
-            <td><span class="status">{{ record.status }}</span></td>
-            <td>{{ record.remarks if record.remarks else 'No remarks' }}</td>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="6">No service history available.</td> <!-- Adjusted colspan to 6 -->
-        </tr>
-    {% endfor %}
+      {% for record in history %}
+      <tr>
+        <td>{{ record.id }}</td>
+        <td>{{ record.service.name }}</td>
+        <td>
+          {% if record.professional_id %} {% set professional =
+          professionals.get(record.professional_id) %} {{ professional.username
+          if professional else 'N/A' }}
+          <!-- Changed from name to username -->
+          {% else %} N/A {% endif %}
+        </td>
+        <!-- Display Professional Username -->
+        <td>{{ record.date_of_service.strftime('%Y-%m-%d') }}</td>
+        <td><span class="status">{{ record.status }}</span></td>
+        <td>{{ record.remarks if record.remarks else 'No remarks' }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="6">No service history available.</td>
+        <!-- Adjusted colspan to 6 -->
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>

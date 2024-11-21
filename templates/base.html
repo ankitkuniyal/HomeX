@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Household Services</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    {% block styles %}
-    {% endblock styles %}
-</head>
-<body>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base.css') }}"
+    />
+    {% block styles %} {% endblock styles %}
+  </head>
+  <body>
     <div class="flash-messages show" id="flash-messages">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul>
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
     </div>
 
     {% block content %}{% endblock %}
 
     <script>
-        // Remove flash messages after 2 seconds
-        setTimeout(() => {
-            const flashMessages = document.getElementById('flash-messages');
-            if (flashMessages) {
-                flashMessages.classList.add('hide');
-            }
-        }, 2000);
+      // Remove flash messages after 2 seconds
+      setTimeout(() => {
+        const flashMessages = document.getElementById("flash-messages");
+        if (flashMessages) {
+          flashMessages.classList.add("hide");
+        }
+      }, 2000);
 
-        // Add smooth fade-out effect
-        document.addEventListener('DOMContentLoaded', () => {
-            const style = document.createElement('style');
-            style.textContent = `
+      // Add smooth fade-out effect
+      document.addEventListener("DOMContentLoaded", () => {
+        const style = document.createElement("style");
+        style.textContent = `
                 .flash-messages.hide {
                     opacity: 0;
                     transition: opacity 0.5s ease-out;
                 }
             `;
-            document.head.appendChild(style);
-        });
+        document.head.appendChild(style);
+      });
     </script>
-</body>
+  </body>
 </html>

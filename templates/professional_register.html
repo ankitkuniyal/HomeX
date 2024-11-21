@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/professional_register.css') }}">
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/professional_register.css') }}"
+/>
 {% endblock styles %} {% block content %}
 <div class="container">
   <h2>Professional Registration</h2>
@@ -32,14 +35,18 @@
     />
 
     <label for="role">Role:</label>
-    <select id="role" name="role" required>
+    <select id="role" name="role" required onchange="toggleOtherServiceInput()">
       <option value="">Select your role</option>
-      <option value="Plumber">Plumber</option>
-      <option value="Electrician">Electrician</option>
-      <option value="Painter">Painter</option>
-      <option value="Cleaner">Cleaner</option>
+      {% for service in services %}
+      <option value="{{ service.name }}">{{ service.name }}</option>
+      {% endfor %}
       <option value="Other">Other</option>
     </select>
+
+    <div id="otherServiceInput" style="display: none">
+      <label for="desc">Please specify your service:</label>
+      <input type="text" name="desc" placeholder="Enter your service" />
+    </div>
 
     <label for="desc">Description:</label>
     <textarea
@@ -51,6 +58,16 @@
 
     <button type="submit" class="btn register-btn">Register</button>
   </form>
-  
 </div>
+<script>
+  function toggleOtherServiceInput() {
+    var roleSelect = document.getElementById("role");
+    var otherServiceInput = document.getElementById("otherServiceInput");
+    if (roleSelect.value === "Other") {
+      otherServiceInput.style.display = "block";
+    } else {
+      otherServiceInput.style.display = "none";
+    }
+  }
+</script>
 {% endblock %}

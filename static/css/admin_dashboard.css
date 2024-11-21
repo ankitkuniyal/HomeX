@@ -1,288 +1,289 @@
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --background-color: #f4f6f9;
-    --text-color: #2c3e50;
-    --input-background: #ffffff;
-    --input-border: #e0e6ed;
-    --card-background: #ffffff;
-    --hover-shadow: rgba(0, 0, 0, 0.1);
-    --disabled-color: #bdc3c7; /* Grey for disabled buttons */
-    --button-border-radius: 8px; /* Slightly smaller radius */
-    --button-padding: 8px 14px; /* Reduced padding */
-    --button-font-size: 0.9rem; /* Smaller font size */
-    --button-width: 100px; /* Set a fixed width */
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f4f6f9;
+  --text-color: #2c3e50;
+  --input-background: #ffffff;
+  --input-border: #e0e6ed;
+  --card-background: #ffffff;
+  --hover-shadow: rgba(0, 0, 0, 0.1);
+  --disabled-color: #bdc3c7; /* Grey for disabled buttons */
+  --button-border-radius: 8px; /* Slightly smaller radius */
+  --button-padding: 8px 14px; /* Reduced padding */
+  --button-font-size: 0.9rem; /* Smaller font size */
+  --button-width: 100px; /* Set a fixed width */
 }
 
 body {
-    background-color: var(--background-color);
-    font-family: Arial, sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .welcome {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .nav-links {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    background-color: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .logout-button {
-    background-color: #e74c3c;
-    color: white;
+  background-color: #e74c3c;
+  color: white;
 }
 
 .section {
-    background-color: var(--card-background);
-    margin: 2rem;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  background-color: var(--card-background);
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .section:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
 }
 
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .section h2 {
-    color: var(--primary-color);
-    margin: 0;
+  color: var(--primary-color);
+  margin: 0;
 }
 
 .btn {
-    background-color: var(--secondary-color);
-    color: white;
-    text-decoration: none;
-    padding: 8px 14px; /* Reduced padding */
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    font-size: 0.9rem; /* Smaller font size */
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px; /* Reduced padding */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem; /* Smaller font size */
 }
 
 .btn:hover {
-    background-color: #27ae60;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
 }
 
 table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 table thead {
-    background-color: #f1f3f5;
+  background-color: #f1f3f5;
 }
 
-table th, table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #e0e6ed;
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e6ed;
 }
 
 table tr:last-child td {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 table tr:hover {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .action-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 8px 14px; /* Reduced padding */
-    margin: 0 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    font-size: 0.9rem; /* Smaller font size */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 14px; /* Reduced padding */
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 0.9rem; /* Smaller font size */
 }
 
 .action-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
 }
 
 .delete-btn {
-    background-color: #e74c3c;
+  background-color: #e74c3c;
 }
 
 .delete-btn:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }
 
 /* Buttons for Customer and Professional Status */
 button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: var(--button-padding);
-    border-radius: var(--button-border-radius);
-    font-size: var(--button-font-size);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-right: 10px;
-    width: var(--button-width); /* Set fixed width */
-    text-align: center;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+  width: var(--button-width); /* Set fixed width */
+  text-align: center;
 }
 
 button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
+  background-color: #2980b9;
+  transform: translateY(-2px);
 }
 
 button:disabled {
-    background-color: var(--disabled-color);
-    color: #7f8c8d;
-    cursor: not-allowed;
+  background-color: var(--disabled-color);
+  color: #7f8c8d;
+  cursor: not-allowed;
 }
 
 button[value="active"] {
-    background-color: #2ecc71; /* Green for Unblock */
+  background-color: #2ecc71; /* Green for Unblock */
 }
 
 button[value="blocked"] {
-    background-color: #e74c3c; /* Red for Block */
+  background-color: #e74c3c; /* Red for Block */
 }
 
 button[value="approved"] {
-    background-color: #3498db; /* Blue for Approve */
+  background-color: #3498db; /* Blue for Approve */
 }
 
 button[value="pending"] {
-    background-color: #f39c12; /* Yellow for Hold */
+  background-color: #f39c12; /* Yellow for Hold */
 }
 
 button:disabled[value="active"],
 button:disabled[value="blocked"],
 button:disabled[value="approved"],
 button:disabled[value="pending"] {
-    background-color: var(--disabled-color);
+  background-color: var(--disabled-color);
 }
 
 /* Modal Styles */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: var(--input-background);
-    margin: 10% auto;
-    padding: 2rem;
-    border-radius: 20px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  background-color: var(--input-background);
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .modal-content form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-content input,
 .modal-content textarea {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 1rem;
-    border: 2px solid var(--input-border);
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border: 2px solid var(--input-border);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .modal-content input:focus,
 .modal-content textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover {
-    color: #333;
+  color: #333;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .nav-links {
-        width: 100%;
-        flex-direction: column;
-    }
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+  }
 
-    .section {
-        margin: 1rem;
-        padding: 1rem;
-    }
+  .section {
+    margin: 1rem;
+    padding: 1rem;
+  }
 
-    table {
-        font-size: 0.9rem;
-    }
+  table {
+    font-size: 0.9rem;
+  }
 }

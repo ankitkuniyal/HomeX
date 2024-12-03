@@ -1,18 +1,16 @@
-{% extends 'base.html' %} {% block styles %}
+{% extends 'base.html' %} 
+{% block styles %}
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='css/professional_dashboard.css') }}"
 />
-<style></style>
-{% endblock styles %} {% block content %}
+{% endblock styles %} 
+
+{% block content %}
 <div class="navbar">
   <span class="welcome">Welcome {{ professional.username }}!</span>
   <div class="nav-links">
-    <a
-      href="{{url_for('professional_dashboard', professional_id=professional.id)}}"
-      >Home</a
-    >
-
+    <a href="{{ url_for('professional_dashboard', professional_id=professional.id) }}">Home</a>
     <a href="{{ url_for('login') }}" class="logout-button">Logout</a>
   </div>
 </div>
@@ -40,36 +38,18 @@
         <td>{{ request.status }}</td>
         <td>
           {% if request.status == 'assigned' %}
-          <form
-            action="{{ url_for('accept_service_request', request_id=request.id) }}"
-            method="POST"
-            style="display: inline"
-          >
+          <form action="{{ url_for('accept_service_request', request_id=request.id) }}" method="POST" style="display: inline">
             <button type="submit" class="action-btn">Accept</button>
           </form>
-          <form
-            action="{{ url_for('reject_service_request', request_id=request.id) }}"
-            method="POST"
-            style="display: inline"
-          >
+          <form action="{{ url_for('reject_service_request', request_id=request.id) }}" method="POST" style="display: inline">
             <button type="submit" class="action-btn">Reject</button>
           </form>
           {% elif request.status == 'accepted' %}
-          <form
-            action="{{ url_for('complete_service_request', request_id=request.id) }}"
-            method="POST"
-            style="display: inline"
-          >
+          <form action="{{ url_for('complete_service_request', request_id=request.id) }}" method="POST" style="display: inline">
             <button type="submit" class="action-btn">Complete</button>
           </form>
           {% elif request.status == 'completed' %}
-          <form
-            action="{{ url_for('close_service_request', request_id=request.id) }}"
-            method="POST"
-            style="display: inline"
-          >
-            <button type="submit" class="action-btn">Close</button>
-          </form>
+          <!-- No more changes for professional after 'completed' -->
           {% endif %}
         </td>
       </tr>

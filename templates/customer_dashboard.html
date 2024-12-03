@@ -1,16 +1,17 @@
-{% extends 'base.html' %} {% block styles %}
+{% extends 'base.html' %} 
+{% block styles %}
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='css/customer_dashboard.css') }}"
 />
-{% endblock styles %} {% block content %}
+{% endblock styles %} 
+
+{% block content %}
 <div class="navbar">
   <div class="welcome">Welcome, {{ customer.name }}!</div>
   <div class="nav-links">
-    <a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}"
-      >Home</a
-    >
-    <a href="{{ url_for('home') }} " class="logout-button">Logout</a>
+    <a href="{{ url_for('customer_dashboard', customer_id=customer.id) }}">Home</a>
+    <a href="{{ url_for('home') }}" class="logout-button">Logout</a>
   </div>
 </div>
 
@@ -26,9 +27,7 @@
       <form action="{{ url_for('create_service_request') }}" method="POST">
         <input type="hidden" name="service_id" value="{{ service.id }}" />
         <input type="hidden" name="customer_id" value="{{ customer.id }}" />
-        <button type="submit" class="action-btn request-btn">
-          Request Service
-        </button>
+        <button type="submit" class="action-btn request-btn">Request Service</button>
       </form>
     </div>
     {% endfor %}
@@ -43,10 +42,10 @@
         <th>#</th>
         <th>Service Name</th>
         <th>Professional Name</th>
-        <!-- Added Professional Name Column -->
         <th>Date</th>
         <th>Status</th>
         <th>Remarks</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -55,21 +54,26 @@
         <td>{{ record.id }}</td>
         <td>{{ record.service.name }}</td>
         <td>
-          {% if record.professional_id %} {% set professional =
-          professionals.get(record.professional_id) %} {{ professional.username
-          if professional else 'N/A' }}
-          <!-- Changed from name to username -->
+          {% if record.professional_id %}
+          {% set professional = professionals.get(record.professional_id) %}
+          {{ professional.username if professional else 'N/A' }}
           {% else %} N/A {% endif %}
         </td>
-        <!-- Display Professional Username -->
         <td>{{ record.date_of_service.strftime('%Y-%m-%d') }}</td>
         <td><span class="status">{{ record.status }}</span></td>
         <td>{{ record.remarks if record.remarks else 'No remarks' }}</td>
+        <td>
+          {% if record.status == 'completed' %}
+          <form action="{{ url_for('close_service_request', request_id=record.id) }}" method="POST">
+            <textarea name="remarks" placeholder="Enter remarks" required></textarea>
+            <button type="submit" class="action-btn">Close</button>
+          </form>
+          {% endif %}
+        </td>
       </tr>
       {% else %}
       <tr>
-        <td colspan="6">No service history available.</td>
-        <!-- Adjusted colspan to 6 -->
+        <td colspan="7">No service history available.</td>
       </tr>
       {% endfor %}
     </tbody>

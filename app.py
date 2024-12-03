@@ -239,79 +239,104 @@ def new_service():
     return render_template ('new_service.html')
 @app.route('/service_request/accept/<int:request_id>', methods=['POST'])
 def accept_service_request(request_id):
-    requests = ServiceRequest.query.get_or_404(request_id)
-    requests.status = "accepted"
+    service_request = ServiceRequest.query.get_or_404(request_id)
     
-    # Create a new ServiceHistory entry
-    history_entry = ServiceHistory(
-        customer_id=requests.customer_id,
-        service_id=requests.service_id,
-        professional_id=requests.professional_id,
-        status="accepted",
-        date_of_service=datetime.utcnow()
-    )
-    db.session.add(history_entry)
-    db.session.commit()
+    # Check if the status is not already 'accepted'
+    if service_request.status != "accepted":
+        service_request.status = "accepted"
+        
+        # Update the ServiceHistory to reflect the change
+        history_entry = ServiceHistory.query.filter_by(service_id=service_request.service_id).first()
+        if history_entry:  # If there's already a history, update it
+            history_entry.status = "accepted"
+            history_entry.date_of_service = datetime.utcnow()  # Update timestamp
+            db.session.add(history_entry)
+        
+        db.session.commit()
+        
+        flash('Service request accepted successfully!', 'success')
+    else:
+        flash('Service request is already accepted!', 'warning')
     
-    flash('Service request accepted successfully!', 'success')
-    return redirect(url_for('professional_dashboard', professional_id=requests.professional_id))
+    return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
+
 
 @app.route('/service_request/reject/<int:request_id>', methods=['POST'])
 def reject_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
-    service_request.status = "rejected"
     
-    # Create a new ServiceHistory entry
-    history_entry = ServiceHistory(
-        customer_id=service_request.customer_id,
-        service_id=service_request.service_id,
-        professional_id=service_request.professional_id,
-        status="rejected",
-        date_of_service=datetime.utcnow()
-    )
-    db.session.add(history_entry)
-    db.session.commit()
+    # Check if the status is not already 'rejected'
+    if service_request.status != "rejected":
+        service_request.status = "rejected"
+        
+        # Update the ServiceHistory to reflect the change
+        history_entry = ServiceHistory.query.filter_by(service_id=service_request.service_id).first()
+        if history_entry:  # If there's already a history, update it
+            history_entry.status = "rejected"
+            history_entry.date_of_service = datetime.utcnow()  # Update timestamp
+            db.session.add(history_entry)
+        
+        db.session.commit()
+        
+        flash('Service request rejected successfully!', 'danger')
+    else:
+        flash('Service request is already rejected!', 'warning')
     
-    flash('Service request rejected successfully!', 'danger')
     return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
 
-@app.route('/service_request/complete/<int:request_id>', methods=['POST'])
+
+@app.route('/complete_service_request/<int:request_id>', methods=['POST'])
 def complete_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
-    service_request.status = "completed"
     
-    # Create a new ServiceHistory entry
-    history_entry = ServiceHistory(
-        customer_id=service_request.customer_id,
-        service_id=service_request.service_id,
-        professional_id=service_request.professional_id,
-        status="completed",
-        date_of_service=datetime.utcnow()
-    )
-    db.session.add(history_entry)
-    db.session.commit()
+    # Check if the status is 'accepted' before marking it as 'completed'
+    if service_request.status == 'accepted':
+        service_request.status = 'completed'
+        
+        # Update or create ServiceHistory entry
+        history_entry = ServiceHistory.query.filter_by(service_id=service_request.service_id).first()
+        if history_entry:  # If there's already a history, update it
+            history_entry.status = "completed"
+            history_entry.date_of_service = datetime.utcnow()  # Update timestamp
+       
+            db.session.add(history_entry)
+        
+        db.session.commit()
+        flash('Service request marked as completed', 'success')
+    else:
+        flash('Invalid status change. Service must be accepted first', 'danger')
     
-    flash('Service request marked as completed!', 'success')
     return redirect(url_for('professional_dashboard', professional_id=service_request.professional_id))
 
-@app.route('/service_request/close/<int:request_id>', methods=['POST'])
+
+@app.route('/close_service_request/<int:request_id>', methods=['POST'])
 def close_service_request(request_id):
     service_request = ServiceRequest.query.get_or_404(request_id)
-    service_request.status = "closed"
     
-    # Create a new ServiceHistory entry
-    history_entry = ServiceHistory(
-        customer_id=service_request.customer_id,
-        service_id=service_request.service_id,
-        professional_id=service_request.professional_id,
-        status="closed",
-        date_of_service=datetime.utcnow()
-    )
-    db.session.add(history_entry)
-    db.session.commit()
+    # Ensure the status is 'completed' before allowing closure
+    if service_request.status == 'completed':
+        remarks = request.form.get('remarks')
+        service_request.status = 'closed'
+        service_request.remarks = remarks
+        
+        # Update or create ServiceHistory entry
+        history_entry = ServiceHistory.query.filter_by(service_id=service_request.service_id).first()
+        if history_entry:  # If there's already a history, update it
+            history_entry.status = "closed"
+            history_entry.remarks = remarks
+            history_entry.date_of_service = datetime.utcnow()  # Update timestamp
     
-    flash('Service request has been closed!', 'success')
-    return redirect(url_for('admin_dashboard'))
+            db.session.add(history_entry)
+        
+        db.session.commit()
+        flash('Service request closed successfully', 'success')
+    else:
+        flash('Cannot close the request, it is not completed yet', 'danger')
+    
+    return redirect(url_for('customer_dashboard', customer_id=service_request.customer_id))
+
+
+
 @app.route('/admin')
 def admin_dashboard():
     services = Service.query.all()
@@ -418,4 +443,4 @@ def delete_service(service_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # This will create the new ServiceHistory table as well
-    app.run(debug=True,port=8000)
+    app.run(debug=True)

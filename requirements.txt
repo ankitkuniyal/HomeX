@@ -1,20 +1,23 @@
-blinker==1.8.2
-checksumdir==1.2.0
-click==8.1.7
-defusedxml==0.7.1
-distlib==0.3.9
-filelock==3.16.1
+# Core Flask
 Flask==3.0.3
-Flask-Login==0.6.3
-Flask-SQLAlchemy==3.1.1
-fonttools==4.55.3
-itsdangerous==2.2.0
-Jinja2==3.1.4
-MarkupSafe==3.0.2
-pillow==11.0.0
-platformdirs==4.3.6
-setuptools==75.6.0
-SQLAlchemy==2.0.36
-typing_extensions==4.12.2
-virtualenv==20.27.1
 Werkzeug==3.0.6
+Jinja2==3.1.4
+itsdangerous==2.2.0
+click==8.1.7
+
+# Database
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.36
+psycopg2-binary==2.9.9  # For PostgreSQL (if you switch from SQLite)
+
+# Forms and security
+Flask-WTF==1.2.1
+WTForms==3.1.2
+python-dotenv==1.0.1  # For environment variables
+
+# Authentication (though you're using basic auth now)
+Flask-Login==0.6.3
+email-validator==2.1.1  # For email validation
+
+# Development (optional)
+blinker==1.8.2  # For flash messages
